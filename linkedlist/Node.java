@@ -1,3 +1,4 @@
+//javac -d . CustomLinkedList.java Node.java && java linkedlist.CustomLinkedList
 package linkedlist;
 
 

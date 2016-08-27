@@ -1,4 +1,8 @@
+//javac -d . CustomLinkedList.java Node.java && java linkedlist.CustomLinkedList
 package linkedlist;
+
+
+import java.util.*;
 
 
 public class CustomLinkedList {
@@ -57,8 +61,23 @@ public class CustomLinkedList {
     }
 
   }
+  
+  public boolean hasLoop(){
+    //collection to store seen nodes
+    ArrayList<Node> seen = new ArrayList<>();
+    Node temp = head;
+    while(temp != null){
+      seen.add(temp);
+      if (seen.contains(temp.getNextNode()))
+        return true;
+      temp = temp.getNextNode();
+    }
+    
+    return false;
+  }
 
   public static void main(String[] args){
+    
     Node<Integer> head = new Node<>(10);
     CustomLinkedList linkedList = new CustomLinkedList(head);
     for (int i = 2; i <= 10; i++){
@@ -74,7 +93,12 @@ public class CustomLinkedList {
     linkedList.printList();
     System.out.println("Size of linked list: " + Integer.toString(linkedList.size()));
 
-
+    //Sample Interview Question 1
+    System.out.println("Has loop: " + Boolean.toString(linkedList.hasLoop()));
+    nodeReplacement.setNextNode(linkedList.get(7));
+    linkedList.add(nodeReplacement, 5);
+    System.out.println("Has loop: " + Boolean.toString(linkedList.hasLoop()));
+    
   }
 
 }
